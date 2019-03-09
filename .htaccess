@@ -1,0 +1,23 @@
+# Redirection erreur-404 :
+ErrorDocument 404 http://cinerama/views/error-404.php
+# Blocage de la visibilité du fichier config.php
+<Files config.php>
+order allow,deny
+deny from all
+</Files>
+# Protéger .htaccess
+#<Files ~ "^.*.([Hh][Tt][AaPp])">
+#order allow,deny
+#deny from all
+#satisfy all
+#</Files>
+# Interdiction de visualisation des repertoires du site :
+Options All -Indexes
+# Masquer les informations relatives au serveur :
+ServerSignature Off
+# Rediriger les internautes vers une page de maintenance - Lorsque vous faîtes des modifications
+RewriteEngine Off
+RewriteCond %{REQUEST_URI} !/maintenance.html$
+# Defini IP autoriser à acceder au site
+RewriteCond %{REMOTE_ADDR} !^127.0.0.1
+RewriteRule $ http://cinerama/views/maintenance.php [R=302,L]
