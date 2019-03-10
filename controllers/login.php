@@ -15,10 +15,12 @@ if (isset($_POST['login'])) {
     } else {
         $formError['mail'] = 'Veuillez renseigner un mail svp.';
     }
-    if (!empty($_POST['password'])) {
-        $password = $_POST['password'];
-    } else {
-        $formError['password'] = 'Veuillez renseigner un mot de passe svp.';
+    if (isset($_POST['password'])) {
+        if (!empty($_POST['password'])) {
+            $password = htmlspecialchars($_POST['password']);
+        } else {
+            $formError['password'] = 'Veuillez renseigner un mot de passe svp.';
+        }
     }
     if (count($formError) == 0) {
         $user->mail = $mail;
@@ -39,4 +41,4 @@ if (isset($_POST['login'])) {
             }
         }
     }
-}
+} 

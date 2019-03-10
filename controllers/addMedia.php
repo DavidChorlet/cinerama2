@@ -2,7 +2,9 @@
 
 $medias = new medias();
 //déclaration des regex :
-$nameRegex = "/([a-zA-Z\- ])/";
+$titleRegex = '/[a-zA-Z0-9\- ]$/';
+$directorRegex = '/[a-zA-Z\-]$/';
+$textRegex = '/[a-zéèàêâùûüëïA-Z0-9\.\!?;+\-]$/';
 //création d'un tableau où l'on vient stocker les erreurs :
 $formError = array();
 $isSuccess = FALSE;
@@ -53,7 +55,7 @@ if (isset($_POST['submit'])) {
         //si $_POST['title'] n'est pas vide
         if (!empty($_POST['title'])) {
             //on vérifie si $_POST['title'] respecte la regex
-            if (preg_match($nameRegex, $_POST['title'])) {
+            if (preg_match($titleRegex, $_POST['title'])) {
                 $title = htmlspecialchars($_POST['title']);
                 //sinon on stock un message dans le tableau formError    
             } else {
@@ -65,7 +67,7 @@ if (isset($_POST['submit'])) {
     }
     if (isset($_POST['director'])) {
         if (!empty($_POST['director'])) {
-            if (preg_match($nameRegex, $_POST['director'])) {
+            if (preg_match($directorRegex, $_POST['director'])) {
                 $director = htmlspecialchars($_POST['director']);
             } else {
                 $formError['director'] = 'Saisie invalide.';
@@ -76,7 +78,7 @@ if (isset($_POST['submit'])) {
     }
     if (isset($_POST['content'])) {
         if (!empty($_POST['content'])) {
-            if (preg_match($nameRegex, $_POST['content'])) {
+            if (preg_match($textRegex, $_POST['content'])) {
                 $content = htmlspecialchars($_POST['content']);
             } else {
                 $formError['content'] = 'Saisie invalide.';

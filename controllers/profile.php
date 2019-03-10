@@ -6,6 +6,9 @@ $isDelete = FALSE;
 if (!empty($_GET['idDelete'])) {
     $users->id = htmlspecialchars($_GET['idDelete']);
     $isDelete = $users->deleteUser();
+    session_destroy();
+    header('Location:index.php');
+    exit();
 }
 
 $isUser = FALSE;
@@ -15,7 +18,7 @@ if (!empty($_GET['id'])) {
 }
 
 //Déclaration des regex :
-$nameRegex = "/([a-zA-Z\- ])/";
+$nameRegex = '/[a-zéèàêâùûüëïA-Z0-9\.\!?;+\-]$/';
 
 //Création d'un tableau où l'on vient stocker les erreurs :
 $formError = array();

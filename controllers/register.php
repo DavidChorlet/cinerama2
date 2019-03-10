@@ -9,13 +9,25 @@ $isError = FALSE;
 $nickname = '';
 $mail = '';
 
+//Déclaration des regex :
+$nameRegex = '/[a-zéèàêâùûüëïA-Z0-9\.\!?;+\-]$/';
+
 //Quand on s'enregistre
 if (isset($_POST['register'])) {
-    //On vérifie que le pseudo n'est pas vide.
-    if (!empty($_POST['nickname'])) {
-        $nickname = htmlspecialchars($_POST['nickname']);
-    } else {
-        $formError['nickname'] = 'Veuillez renseigner un pseudo svp.';
+    //si $_POST['nickname'] existe
+    if (isset($_POST['nickname'])) {
+        //si $_POST['nickname'] n'est pas vide
+        if (!empty($_POST['nickname'])) {
+            //on vérifie si $_POST['nickname'] respecte la regex
+            if (preg_match($nameRegex, $_POST['nickname'])) {
+                $nickname = htmlspecialchars($_POST['nickname']);
+                //sinon on stock un message dans le tableau formError    
+            } else {
+                $formError['nickname'] = 'Saisie invalide.';
+            }
+        } else {
+            $formError['nickname'] = 'Erreur, veuillez remplir le champ.';
+        }
     }
     //On vérifie que l'adresse mail est renseigné, qu'il correspond à la confirmation et qu'il a la bonne forme.
     if (!empty($_POST['mail']) && !empty($_POST['mailVerify'])) {

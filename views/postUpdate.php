@@ -79,9 +79,4 @@ include 'header.php';
         </fieldset>
     </form>
 </div>
-<form method="POST" action="postUpdate.php">
-    <input type="text" name="pseudo" placeholder="votre pseudo" />
-    <textarea name="commentaire" placeholder="votre commentaire"></textarea>
-    <input type="submit" value="poster mon commentaire" name="submit" />
-</form>
 <?php include 'footer.php'; ?>

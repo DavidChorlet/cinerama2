@@ -3,6 +3,16 @@ include '../models/config.php';
 include '../controllers/profile.php';
 include 'header.php';
 ?>
+<?php
+if (isset($_GET['idDelete'])) {
+    if ($isDelete) {
+    } else {
+        ?>
+        <div class="text-danger">Echec de la suppression...</div>
+        <?php
+    }
+}
+?>
 <div class="container-fluid">
     <div class="row">
         <div class="text-center col-12">
