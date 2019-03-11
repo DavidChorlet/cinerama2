@@ -5,12 +5,6 @@ ErrorDocument 404 http://cinerama/views/error-404.php
 order allow,deny
 deny from all
 </Files>
-# Protéger .htaccess
-#<Files ~ "^.*.([Hh][Tt][AaPp])">
-#order allow,deny
-#deny from all
-#satisfy all
-#</Files>
 # Interdiction de visualisation des repertoires du site :
 Options All -Indexes
 # Masquer les informations relatives au serveur :
